@@ -1,0 +1,55 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi perfil | Portal del Empleado</title>
+    <link rel="stylesheet" href="{% static 'empleados/estilos.css' %}">
+</head>
+<body>
+    <header class="barra">
+        <div class="logo">SEGURIDAD<span>LTDA.</span></div>
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="boton-salir" type="submit">Cerrar sesión</button>
+        </form>
+    </header>
+
+    <main class="contenedor">
+        <p class="etiqueta">PORTAL DEL EMPLEADO</p>
+        <h2>Mi información personal</h2>
+        <p class="descripcion">Consulta y actualiza tus datos de contacto de manera segura.</p>
+
+        <section class="tarjeta">
+            <div class="cabecera-perfil">
+                <div class="avatar">
+                    {{ user.username|first|upper }}
+                </div>
+                <div>
+                    <h3>{{ user.get_full_name|default:user.username }}</h3>
+                    <p class="descripcion">Colaborador de Seguridad LTDA.</p>
+                </div>
+            </div>
+
+            {% if guardado %}
+                <div class="mensaje-exito" role="status">
+                    Tus datos fueron actualizados correctamente.
+                </div>
+            {% endif %}
+
+            <h3>Datos personales</h3>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ formulario.as_p }}
+                <button class="boton" type="submit">
+                    Guardar cambios
+                </button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
