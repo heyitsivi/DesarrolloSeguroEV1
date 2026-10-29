@@ -1,0 +1,60 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acceso | Portal del Empleado</title>
+    <link rel="stylesheet" href="{% static 'empleados/estilos.css' %}">
+</head>
+<body>
+    <main class="layout-login">
+        <section class="panel-marca">
+            <div class="logo">SEGURIDAD<span>LTDA.</span></div>
+
+            <div>
+                <p class="etiqueta">PORTAL CORPORATIVO</p>
+                <h1>Tu espacio de trabajo, más simple y seguro.</h1>
+                <p>Consulta y administra tu información personal desde una plataforma diseñada para nuestros colaboradores.</p>
+            </div>
+
+            <p>© 2026 Seguridad LTDA. Acceso autorizado.</p>
+        </section>
+
+        <section class="panel-formulario">
+            <div class="tarjeta-login">
+                <p class="etiqueta">BIENVENIDO DE NUEVO</p>
+                <h2>Iniciar sesión</h2>
+                <p class="descripcion">Ingresa tus credenciales para acceder a tu portal.</p>
+
+                {% if form.non_field_errors %}
+                    <div class="mensaje-error" role="alert">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <label for="id_username">Usuario</label>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+
+                    <label for="id_password">Contraseña</label>
+                    {{ form.password }}
+                    {{ form.password.errors }}
+
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    {% endif %}
+
+                    <button class="boton" type="submit">
+                        Ingresar al portal
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
