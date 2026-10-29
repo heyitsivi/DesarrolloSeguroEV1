@@ -11,6 +11,7 @@ urlpatterns = [
         ),
         name='login'
     ),
+    path('vacaciones/', include('vacaciones.urls')),
     path(
         'logout/',
         auth_views.LogoutView.as_view(),
