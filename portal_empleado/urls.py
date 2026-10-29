@@ -29,7 +29,11 @@ urlpatterns = [
         name='login'
     ),
 
+    path('vacaciones/', include('vacaciones.urls')),
+=======
+
     # Cierre de sesión
+
     path(
         'logout/',
         auth_views.LogoutView.as_view(),
