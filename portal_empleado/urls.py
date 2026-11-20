@@ -30,7 +30,6 @@ urlpatterns = [
     ),
 
     path('vacaciones/', include('vacaciones.urls')),
-=======
 
     # Cierre de sesión
 
