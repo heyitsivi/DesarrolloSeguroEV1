@@ -1,66 +1,12 @@
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis solicitudes de vacaciones</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            padding: 40px;
-        }
-
-        .contenedor {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #253858;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-            overflow-wrap: anywhere;
-        }
-
-        th {
-            background-color: #2563eb;
-            color: white;
-        }
-
-        .mensaje {
-            text-align: center;
-            color: #666;
-            margin-top: 20px;
-        }
-
-        .boton {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'vacaciones/mis_solicitudes.css' %}">
 </head>
 
 <body>
