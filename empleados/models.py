@@ -12,4 +12,5 @@ class PerfilEmpleado(models.Model):
     telefono = models.CharField(max_length=12, blank=True)
 
     def __str__(self):
-        return f"{self.usuario.username} - {self.rut}"
+        rut_oculto = f"******{self.rut[-4:]}" if self.rut else "Sin RUT"
+        return f"{self.usuario.username} - {rut_oculto}"
