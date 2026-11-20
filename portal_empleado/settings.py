@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 import os
+
 from dotenv import load_dotenv
+from django.utils.csp import CSP
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csp.ContentSecurityPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,6 +59,41 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+# Content Security Policy — EV3 Desarrollo Seguro
+#
+# CSP obligatoria en fase de validacion.
+# El navegador bloqueara los recursos que no cumplan
+# las directivas configuradas.
+#
+# Antes de integrar el cambio, verificar las vistas
+# autenticadas, Django Admin y los formularios.
+
+SECURE_CSP = {
+    "default-src": [CSP.SELF],
+    "script-src": [CSP.SELF],
+    "style-src": [
+        CSP.SELF,
+        "https://fonts.googleapis.com",
+    ],
+    "font-src": [
+        CSP.SELF,
+        "https://fonts.gstatic.com",
+    ],
+    "img-src": [
+        CSP.SELF,
+        "data:",
+    ],
+    "object-src": [CSP.NONE],
+    "base-uri": [CSP.SELF],
+    "frame-ancestors": [CSP.NONE],
+    "form-action": [CSP.SELF],
+}
+
+# Desactivamos Report-Only para evitar politicas duplicadas.
+SECURE_CSP_REPORT_ONLY = {}
+
 
 ROOT_URLCONF = 'portal_empleado.urls'
 
